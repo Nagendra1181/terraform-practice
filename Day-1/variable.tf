@@ -1,47 +1,23 @@
-variable "vpc_cidr" {
-    type = string
-    default = "10.0.0.0/16"
+variable "resource_values" {
+    type = object({
+      vpc-cidr = string
+      vpc-name = string 
+      
+      subnet_info = object({
+        sub-cidr = list(string)
+        sub-az = list(string)
+        sub-name = list(string)
+      })
+    })
   
+default = {
+  vpc-cidr = "10.0.0.0/16"
+  vpc-name = "my-vpc"
+  subnet_info = {
+    sub-cidr = ["10.0.0.0/24","10.0.1.0/24","10.0.2.0/24","10.0.3.0/24"]
+    sub-az = ["ap-south-1a","ap-south-1b","ap-south-1c","ap-south-1a"]
+    sub-name =  ["sub-1","sub-2","sub-3","sub-4"]
+  }
 }
-
-variable "vpc_name" {
-    type = string
-    default = "my_vpc"
-  
-}
-
-variable "sub1-az" {
-    type = string
-    default = "ap-south-1a"
-  
-}
-
-variable "sub1-cidr" {
-    type = string
-    default = "10.0.0.0/21"
-  
-}
-
-variable "sub1-name" {
-    type = string
-    default = "subnet-1a"
-  
-}
-
-variable "sub2-az" {
-    type = string
-    default = "ap-south-1b"
-  
-}
-
-variable "sub2-cidr" {
-    type = string
-    default = "10.0.253.0/24"
-  
-}
-
-variable "sub2-name" {
-    type = string
-    default = "subnet-1b"
   
 }
